@@ -1,4 +1,4 @@
-// Binomial model with beta(1,1,) prior
+// Binomial model with beta(1,1) prior
 data {
   int<lower=0> N;
   int<lower=0> y;
