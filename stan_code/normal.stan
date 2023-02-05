@@ -11,6 +11,7 @@ parameters {
 }
 model {
     y ~ normal(mu, sigma);
+    
     // alternative way to write the above line
     // target += normal_lpdf(y | mu, sigma);
 }
