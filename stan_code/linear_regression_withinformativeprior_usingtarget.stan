@@ -14,6 +14,7 @@ parameters {
 model {
     // beta ~ normal(0, 10);
     target += normal_lpdf(beta | 0, 10); #equiv to the above line
+            # expert note: this is *not quite* equivalent. the sampling statement with ~ drops the normalizing constants (e.g. 1/sqrt(2*pi) for a normal distribution), which is not a problem for the MCMC sampling/HMC since it works in unnormalized space, but is a problem for extracting log likelihoods from the model. The "actual" equivalent statement to the ~ statement is `normal_lupdf(beta | 0, 10)`, where the u stands for unnormalized. See: https://discourse.mc-stan.org/t/request-for-final-feedback-user-controlled-unnormalized-propto-distribution-syntax/16029/3 for more details. 
 
     // sigma ~ normal(0, 10);
     target += normal_lpdf(sigma | 0, 10); #equiv to the above line
