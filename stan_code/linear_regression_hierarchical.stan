@@ -21,13 +21,12 @@ parameters {
 }
 model {
     beta ~ normal(0, 10);
+    sigma ~ normal(0, 10);
 
     #hierarchical prior on beta_types
     for (i in 1:N_types) {
-        beta_types[i] ~ normal(beta, 10);
+        beta_types[i] ~ normal(beta, 1);
     }
-
-    sigma ~ normal(0, 10);
 
     # likelihood for each observation
     for (i in 1:N) {
