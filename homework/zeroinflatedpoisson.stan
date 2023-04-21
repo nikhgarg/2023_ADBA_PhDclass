@@ -13,8 +13,10 @@ parameters {
 model {
   for (i in 1:N) {
     if (y[i] == 0) {
-      target += log_sum_exp(bernoulli_logit_lpmf(1 | alpha * X1[i]),
-      bernoulli_logit_lpmf(0 | alpha * X1[i]) + poisson_lpmf(y[i] | exp(X2[i] * beta)));
+      target += 
+        log_sum_exp(bernoulli_logit_lpmf(1 | alpha * X1[i])
+        ,
+          bernoulli_logit_lpmf(0 | alpha * X1[i]) + poisson_lpmf(y[i] | exp(X2[i] * beta)));
     }
     else {
       target += bernoulli_logit_lpmf(0 | alpha * X1[i]) + poisson_lpmf(y[i] | exp(X2[i] * beta));

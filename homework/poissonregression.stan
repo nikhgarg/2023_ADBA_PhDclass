@@ -14,6 +14,7 @@ model {
   intercept ~ normal(0, 2);
   alpha_beta ~ uniform(-1, 1);
   target += poisson_log_glm_lpmf(y | X, intercept, alpha_beta);
+  // y ~ poisson(exp(intercept + dot_product(X, alpha_beta)));
 }
 
 generated quantities {
